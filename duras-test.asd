@@ -1,5 +1,5 @@
 (defsystem duras-test
-  :author "@papachan"
+  :author "@papachan <papachan@gmail.com>"
   :version "0.1"
   :license "MIT"
   :depends-on (:duras
@@ -7,4 +7,5 @@
   :components ((:module "t"
                 :serial t
                 :components
-                ((:file "duras")))))
+                ((:file "duras-test"))))
+  :description "")

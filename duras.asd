@@ -1,14 +1,14 @@
 ;;;; duras.asd
+
 (asdf:defsystem #:duras
-  :author "@papachan"
+  :author "papachan <papachan@gmail.com>"
   :license "MIT"
   :depends-on (:fiveam)
   :components ((:module "src"
                         :serial t
                         :components
-		((:file "duras"))))
-  :description "Scaffold for Common Lisp"
+                        ((:file "duras"))))
+  :description "Scaffold for beginners in Common Lisp"
   :long-description
   #.(uiop:read-file-string
      (uiop:subpathname *load-pathname* "README.md")))
-
