@@ -13,13 +13,18 @@
 ;;; "duras" goes here. Hacks and glory await!
 
 (defun hello()
-  (print "hello example test")
+  (print "here i am Duras !")
   (terpri))
 
 ; a range function
 (defun range (min max)
   (loop for n from min below (+ 1 max)
        collect n))
+
+; an average function
+(defun average (list)
+  (/ (reduce #'+ list) (length list)))
+;;
 
 ;;; interleaves two lists in a method:
 ;;; (range 1 6) (:1 :2 :3 :4 :5 :6)
@@ -30,5 +35,14 @@
   (cond ((and (eql lst1 nil) (eql lst2 nil)) nil)
         ((eql lst1 nil ) (cons nil (interleave lst2 lst1)))
         (t  (cons (first lst1) (interleave lst2 (rest lst1))))))
+
+(defun flatten (structure)
+  (cond ((null structure) nil)
+        ((atom structure) (list structure))
+        (t (mapcan #'flatten structure))))
+
+
+
+
 
 ;;

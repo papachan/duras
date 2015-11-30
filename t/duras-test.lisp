@@ -20,32 +20,41 @@
 (defun add-4 (n) 
   (+ n 4))
 
+(def-suite duras-suite :description "first tests")
+
+(in-suite duras-suite)
 
 (test add-2
   "Test the ADD-2 function"
   (is (= 2 (add-2 0)))
   (is (= 0 (add-2 -2))))
 
-(explain! (run 'add-2))
+(run! 'duras-suite)
 
+;; ++++++++++++++++++++++++++++++++++++++++++
 (test ok-test
   (is (= (+ 2 2) 4)))
 
-(run 'ok-test)
-
-(test range-2
+;; range test
+(test ok-range
   "Test the RANGE function"
   (is (equal '(1 2 3 4 5 6) (duras::range 1 6))))
 
-(explain! (run 'range-2))
+;; ++++++++++++++++++++++++++++++++++++++++++
+;; average test
+(test ok-average
+      "Test an Average function"
+      (is (equal 3 (duras::average '(0 6)))))
 
+;; ++++++++++++++++++++++++++++++++++++++++++
 (test interleaves-test
   "Test an interleave function with two lists"
   (is (equal '(1 :1 2 :2 3 :3 4 :4 5 :5 6 :6)
              (duras::interleave (duras::range 1 6) *mylist*))))
 
-(explain! (run 'interleaves-test))
+(test flatten-test
+  "Test a flatten list"
+  (is (equal '(1 2 3 4) (duras::flatten '(1 (2) (3) 4)))))
 
-
-;; 
+(run 'duras-suite)
 
