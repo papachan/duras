@@ -38,13 +38,19 @@
 ;; range test
 (test ok-range
       "Test the RANGE function"
-      (is (equal '(1 2 3 4 5 6) (duras::range 1 6))))
+      (is (equal '(1 2 3 4 5 6) (duras::range 1 6)))
+      (is (equal '(1 2) (duras::range 1 2))))
+
+(run! 'duras-suite)
 
 ;; ++++++++++++++++++++++++++++++++++++++++++
 ;; average test
 (test ok-average
       "Test an Average function"
-      (is (equal 3 (duras::average '(0 6)))))
+      (is (equal 3 (duras::average '(0 6))))
+      (is (equal 5/2 (duras::average '(0 1 2 3 4 5)))))
+
+(run! 'duras-suite)
 
 ;; ++++++++++++++++++++++++++++++++++++++++++
 (test interleaves-test
@@ -52,23 +58,36 @@
       (is (equal '(1 :1 2 :2 3 :3 4 :4 5 :5 6 :6)
                  (duras::interleave (duras::range 1 6) *mylist*))))
 
+(run! 'duras-suite)
+
 ;; ++++++++++++++++++++++++++++++++++++++++++
 (test flatten-test
       "Test a flatten list"
       (is (equal '(1 2 3 4) (duras::flatten '(1 (2) (3) 4)))))
 
+(run! 'duras-suite)
+
 ;; ++++++++++++++++++++++++++++++++++++++++++
 (test find-min-max
-      "Test a method which find the min and the max of a list"
+      "Test which find the min and the max of a list"
       (is (equal '(0 10) (duras::find-min-max '(1 0 10 4)))))
 
+(run! 'duras-suite)
+
 (test smallest-two
-  "A test find the smallest two values on a list"
+  "A test finding the smallest two values at a list"
   (is (equal '(1 2)  (duras::smallest-two '(6 5 4 3 2 1 3 4 5 6 7)))) 
   (is (equal '(1 1)  (duras::smallest-two '(1 1 1 1 1)))) 
   (is (equal '(0 1)  (duras::smallest-two '(1 1 0 1 1))))
   (is (equal '(0 1)  (duras::smallest-two '(0 1 1 1 1)))))
 
+(run! 'duras-suite)
 
-(run 'duras-suite)
+(test calculate-list-exp
+  "A test to calculate the sum of digits of 2**n and sum"
+  (is (equal 26 (duras::calculate-list-exp 15))))
+
+(run! 'duras-suite)
+
+
 

@@ -55,4 +55,11 @@
         ((< element min1) (setf min2 min1 min1 element))
         ((< element min2) (setf min2 element))))))
 
+(defun number-to-list (n)    
+  (loop for c across
+       (write-to-string n) collect (digit-char-p c)))
+
+(defun calculate-list-exp (n)
+  (reduce #'+ (number-to-list (expt 2 n))))
+
 ;;
