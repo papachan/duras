@@ -41,8 +41,18 @@
         ((atom structure) (list structure))
         (t (mapcan #'flatten structure))))
 
+(defun find-min-max (numbers)
+  (let ((min 100) (max -1))
+    (dolist (i numbers (list min max))
+      (if (> i max) (setf max i))
+      (if (< i min) (setf min i)))))
 
-
-
+(defun smallest-two (lst)
+  (let ((min1 (min (first lst) (second lst)))
+        (min2 (max (first lst) (second lst))))
+    (dolist (element (cddr lst) (list min1 min2))
+      (cond
+        ((< element min1) (setf min2 min1 min1 element))
+        ((< element min2) (setf min2 element))))))
 
 ;;
