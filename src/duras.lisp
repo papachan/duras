@@ -1,20 +1,21 @@
 ;;;; -*- Mode: Lisp; indent-tabs-mode: nil -*-
 ;;;; duras.lisp
-;(do-all-symbols (sym (find-package :duras)) (export sym))
 
 (in-package :cl-user)
 
 (defpackage :duras
   (:use :cl)
-  (:documentation "a simple exercise"))
+  (:export :range
+           :average
+           :interleave
+           :flatten
+           :find-min-max
+           :smallest-two
+           :number-to-list
+           :calculate-list-exp
+           :round_100))
 
 (in-package :duras)
-
-;;; "duras" goes here. Hacks and glory await!
-
-(defun hello()
-  (print "here i am Duras !")
-  (terpri))
 
 ; a range function
 (defun range (min max)
@@ -26,8 +27,6 @@
   (/ (reduce #'+ list) (length list)))
 ;;
 
-;;; interleaves two lists in a method:
-;;; (range 1 6) (:1 :2 :3 :4 :5 :6)
 (defparameter *mylist* '(:1 :2 :3 :4 :5 :6))
 
 (defun interleave (lst1 lst2)
@@ -62,4 +61,6 @@
 (defun calculate-list-exp (n)
   (reduce #'+ (number-to-list (expt 2 n))))
 
+(defun round_100 (n)
+  (* (round (float(/ n 100))) 100))
 ;;
