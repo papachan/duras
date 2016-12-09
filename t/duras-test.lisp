@@ -71,7 +71,7 @@
 
 (test round_100-test
   "Test to round 100 an integer"
-  (is (equal 15000 (round_100 14967))))
+  (is (equal 15000 (mround 14967 100))))
 
 
 (run! 'duras-suite)

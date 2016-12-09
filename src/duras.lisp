@@ -13,7 +13,7 @@
            :smallest-two
            :number-to-list
            :calculate-list-exp
-           :round_100))
+           :mround))
 
 (in-package :duras)
 
@@ -61,6 +61,7 @@
 (defun calculate-list-exp (n)
   (reduce #'+ (number-to-list (expt 2 n))))
 
-(defun round_100 (n)
-  (* (round (float(/ n 100))) 100))
+(defun mround (n multiple)
+  (let ((m (/ 1 multiple)))
+    (/ (round (* n m)) m)))
 ;;
