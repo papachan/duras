@@ -8,7 +8,8 @@
                         :serial t
                         :components
                         ((:file "duras")
-                         (:file "binary"))))
+                         (:file "binary")
+                         (:file "algorithm"))))
   :description "Scaffold for beginners in Common Lisp"
   :long-description
   #.(uiop:read-file-string

@@ -4,13 +4,27 @@
 (defpackage duras-test
   (:use :cl :fiveam :duras :binary)
   (:import-from :duras)
-  (:import-from :binary))
+  (:import-from :binary)
+  (:import-from :algorithm))
 
 (in-package :duras-test)
 
 ;;;; 
 
 (defparameter *mylist* '(:1 :2 :3 :4 :5 :6))
+
+(defparameter *list* (list
+                      "racadabra$"
+                      "acadabra$"
+                      "a$"
+                      "abracadabra$"
+                      "adabra$"
+                      "abracadabra$"
+                      "abra$"
+                      "bracadabra$"
+                      "bra$"
+                      "cadabra$"
+                      "ra$"))
 
 (def-suite duras-suite :description "first tests")
 
@@ -73,6 +87,9 @@
   "Test to round 100 an integer"
   (is (equal 15000 (mround 14967 100))))
 
+(test findLongestSubString-test
+  "Test to search the longest substring from a list"
+  (is (equal "abracadabra$" (algorithm::findLongestSubstring *list*))))
 
 (run! 'duras-suite)
 
