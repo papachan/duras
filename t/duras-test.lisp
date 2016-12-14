@@ -89,7 +89,8 @@
 
 (test findLongestSubString-test
   "Test to search the longest substring from a list"
-  (is (equal "abracadabra$" (algorithm::findLongestSubstring *list*))))
+  (is (equal "abracadabra$" (algorithm::findLongestSubstring *list*)))
+  (is (equal "1" (algorithm::findLongestSubstring '("1" "2" "3")))))
 
 (run! 'duras-suite)
 
