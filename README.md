@@ -1,4 +1,5 @@
-![Travis Logo](https://travis-ci.org/papachan/duras.svg?branch=master)
+[![Build Status](https://travis-ci.org/papachan/duras.svg?branch=master)]
+
 
 # duras
 
