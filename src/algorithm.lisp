@@ -21,12 +21,13 @@
   (let ((best (car args)))
     (unless (car args)
       (setf best (first lst)))
-    (if (not (null lst))
+    (if (eql nil lst)
+        best
         (progn
+          (print best)
           (cond ((< (length (first lst)) (length best))
                  (setf best (first lst))))
-          (findSmallestSubstring (rest lst) best))
-        best)))
+          (findSmallestSubstring (rest lst) best)))))
 
 ;; reordering list
 (defun reordering-list (lst &rest new)
