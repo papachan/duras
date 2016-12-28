@@ -9,7 +9,8 @@
                         :components
                         ((:file "duras")
                          (:file "binary")
-                         (:file "algorithm"))))
+                         (:file "algorithm")
+                         (:file "math"))))
   :description "Scaffold for beginners in Common Lisp"
   :long-description
   #.(uiop:read-file-string

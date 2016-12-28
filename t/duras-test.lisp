@@ -2,10 +2,12 @@
 (asdf:oos 'asdf:load-op :fiveam)
 
 (defpackage duras-test
-  (:use :cl :fiveam :duras :binary)
-  (:import-from :duras)
-  (:import-from :binary)
-  (:import-from :algorithm))
+  (:use :cl
+        :fiveam
+        :duras
+        :binary
+        :math
+        :algorithm))
 
 (in-package :duras-test)
 
@@ -13,18 +15,31 @@
 
 (defparameter *mylist* '(:1 :2 :3 :4 :5 :6))
 
+(defparameter *lst* '(1 2 2 3 3 4 5 6 6))
+
 (defparameter *list* (list
                       "racadabra$"
                       "acadabra$"
                       "a$"
                       "abracadabra$"
                       "adabra$"
-                      "abracadabra$"
                       "abra$"
                       "bracadabra$"
                       "bra$"
                       "cadabra$"
                       "ra$"))
+
+(defparameter *result* (list
+                      "a$"
+                      "ra$"
+                      "bra$"
+                      "abra$"
+                      "adabra$"
+                      "cadabra$"
+                      "acadabra$"
+                      "racadabra$"
+                      "bracadabra$"
+                      "abracadabra$"))
 
 (def-suite duras-suite :description "first tests")
 
@@ -81,17 +96,40 @@
 
 (test binary-test
   "Test to transform a integer into a binary list"
-  (is (equal '(1 0 1 0 1 0) (binary::binary-list 42))))
+  (is (equal '(1 0 1 0 1 0) (binary-list 42))))
 
 (test round_100-test
   "Test to round 100 an integer"
   (is (equal 15000 (mround 14967 100))))
 
+(test remove_duplicates-test
+  "Test remove duplicates"
+  (is (equal '(1 2 3 4 5 6) (remove-duplicates *lst* :test #'equal))))
+
 (test findLongestSubString-test
   "Test to search the longest substring from a list"
   (is (equal "abracadabra$" (algorithm::findLongestSubstring *list*)))
-  (is (equal "1" (algorithm::findLongestSubstring '("1" "2" "3")))))
+  (is (equal "1" (findLongestSubstring '("1" "2" "3")))))
+
+(test findSmallestSubString-test
+  "Test to search the smallest substring from a list"
+  (is (equal "a$" (findSmallestSubString *list*))))
+
+(test reordering_list-test
+  "Test reordering a list"
+  (is (equal *result* (reordering-list *list*))))
+
+;; ++++++++++++++++++++++++++++++++++++++++++
+
+(defparameter *listA* '(2 4 8 16))
+(defparameter *listB* '(3 5 7 11 13 17 19))
+
+(test sort_double_list-test
+  "Test sorting two lists and merging into a single one"
+  (is (equal '(2 3 4 5 7 8 11 13 16 17 19)
+             (merge 'list *listA* *listB* '<))))
+
+;; ++++++++++++++++++++++++++++++++++++++++++
 
 (run! 'duras-suite)
-
 

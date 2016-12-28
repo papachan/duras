@@ -6,14 +6,12 @@
 (defpackage :duras
   (:use :cl)
   (:export :range
-           :average
            :interleave
            :flatten
            :find-min-max
            :smallest-two
            :number-to-list
-           :calculate-list-exp
-           :mround))
+           :calculate-list-exp))
 
 (in-package :duras)
 
@@ -22,9 +20,6 @@
   (loop for n from min below (+ 1 max)
        collect n))
 
-; an average function
-(defun average (list)
-  (/ (reduce #'+ list) (length list)))
 ;;
 
 (defparameter *mylist* '(:1 :2 :3 :4 :5 :6))
@@ -61,7 +56,4 @@
 (defun calculate-list-exp (n)
   (reduce #'+ (number-to-list (expt 2 n))))
 
-(defun mround (n multiple)
-  (let ((m (/ 1 multiple)))
-    (/ (round (* n m)) m)))
 ;;
