@@ -96,7 +96,12 @@
 
 (test binary-test
   "Test to transform a integer into a binary list"
-  (is (equal '(1 0 1 0 1 0) (binary-list 42))))
+  (is (equal '(1) (binary-list 1)))
+  (is (equal '(1 1) (binary-list 3)))
+  (is (equal '(1 1 1) (binary-list 7)))
+  (is (equal '(1 1 1 1) (binary-list 15)))
+  (is (equal '(1 0 1 0 1 0) (binary-list 42)))
+  (is (equal '(1 1 1 1 1 1 1) (binary-list 127))))
 
 (test round_100-test
   "Test to round 100 an integer"
