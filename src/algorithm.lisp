@@ -10,12 +10,12 @@
 
 (defun findLongestSubstring (lst &rest args)
   (let ((best (car args)))
-    (if (not (null lst))
+    (if (eql nil lst)
+        best
         (progn
           (if (< (length best) (length (first lst)))
               (setf best (first lst)))
-          (findLongestSubstring (rest lst) best))
-        best)))
+          (findLongestSubstring (rest lst) best)))))
 
 (defun findSmallestSubstring (lst &rest args)
   (let ((best (car args)))
@@ -24,7 +24,6 @@
     (if (eql nil lst)
         best
         (progn
-          (print best)
           (cond ((< (length (first lst)) (length best))
                  (setf best (first lst))))
           (findSmallestSubstring (rest lst) best)))))
