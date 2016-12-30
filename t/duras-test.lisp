@@ -13,9 +13,9 @@
 
 ;;;; 
 
-(defparameter *mylist* '(:1 :2 :3 :4 :5 :6))
+(defparameter *mylist* '(:1 :2 :3 :4 :5 :6) "used for interleaves test")
 
-(defparameter *lst* '(1 2 2 3 3 4 5 6 6))
+(defparameter *lst* '(1 2 2 3 3 4 5 6 6) "used for remove duplicates test")
 
 (defparameter *list* (list
                       "racadabra$"
@@ -27,7 +27,8 @@
                       "bracadabra$"
                       "bra$"
                       "cadabra$"
-                      "ra$"))
+                      "ra$")
+  "A list for largest substring test")
 
 (defparameter *result* (list
                       "a$"
@@ -39,7 +40,8 @@
                       "acadabra$"
                       "racadabra$"
                       "bracadabra$"
-                      "abracadabra$"))
+                      "abracadabra$")
+  "A list for sorting test output")
 
 (def-suite duras-suite :description "first tests")
 
