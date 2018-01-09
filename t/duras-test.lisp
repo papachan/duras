@@ -11,7 +11,7 @@
 
 (in-package :duras-test)
 
-;;;; 
+;;;;
 
 (defparameter *mylist* '(:1 :2 :3 :4 :5 :6) "used for interleaves test")
 
@@ -76,8 +76,8 @@
 ;; ++++++++++++++++++++++++++++++++++++++++++
 (test smallest-two
   "A test finding the smallest two values at a list"
-  (is (equal '(1 2)  (smallest-two '(6 5 4 3 2 1 3 4 5 6 7)))) 
-  (is (equal '(1 1)  (smallest-two '(1 1 1 1 1)))) 
+  (is (equal '(1 2)  (smallest-two '(6 5 4 3 2 1 3 4 5 6 7))))
+  (is (equal '(1 1)  (smallest-two '(1 1 1 1 1))))
   (is (equal '(0 1)  (smallest-two '(1 1 0 1 1))))
   (is (equal '(0 1)  (smallest-two '(0 1 1 1 1)))))
 
@@ -138,5 +138,15 @@
 
 ;; ++++++++++++++++++++++++++++++++++++++++++
 
-(run! 'duras-suite)
+(test prime_number
+  "detect when numer is prime or not"
+  (is (equal (math::primep 0) nil))
+  (is (equal (math::primep 2) t))
+  (is (equal (math::primep 3) t))
+  (is (equal (math::primep 4) nil)))
 
+(test get-10-first-primes-number
+  "new method to get the 10 first primes number"
+  (is (equal '(2 3 5 7 11 13 17 19 23 29) (duras::first-primes))))
+
+(run! 'duras-suite)

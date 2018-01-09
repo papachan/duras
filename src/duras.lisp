@@ -11,7 +11,8 @@
            :find-min-max
            :smallest-two
            :number-to-list
-           :calculate-list-exp))
+           :calculate-list-exp
+           :first-primes))
 
 (in-package :duras)
 
@@ -49,11 +50,18 @@
         ((< element min1) (setf min2 min1 min1 element))
         ((< element min2) (setf min2 element))))))
 
-(defun number-to-list (n)    
+(defun number-to-list (n)
   (loop for c across
        (write-to-string n) collect (digit-char-p c)))
 
 (defun calculate-list-exp (n)
   (reduce #'+ (number-to-list (expt 2 n))))
+
+(defun first-primes (&key (end 10))
+  (loop for n upfrom 2
+     when (math::primep n)
+     sum 1 into count
+     and collect n
+     until (>= count end)))
 
 ;;
