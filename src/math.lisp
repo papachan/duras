@@ -1,5 +1,7 @@
 ;;;; -*- Mode: Lisp; indent-tabs-mode: nil -*-
 ;;;; math.lisp
+(in-package :cl-user)
+
 (defpackage :math
   (:use :cl)
   (:export :mround
@@ -7,8 +9,6 @@
            :primep))
 
 (in-package :math)
-
-
 
 (defun average (list)
   (/ (reduce #'+ list) (length list)))

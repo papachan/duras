@@ -115,7 +115,7 @@
 
 (test findLongestSubString-test
   "Test to search the longest substring from a list"
-  (is (equal "abracadabra$" (algorithm::findLongestSubstring *list*)))
+  (is (equal "abracadabra$" (findLongestSubstring *list*)))
   (is (equal "1" (findLongestSubstring '("1" "2" "3")))))
 
 (test findSmallestSubString-test
@@ -140,13 +140,13 @@
 
 (test prime_number
   "detect when numer is prime or not"
-  (is (equal (math::primep 0) nil))
-  (is (equal (math::primep 2) t))
-  (is (equal (math::primep 3) t))
-  (is (equal (math::primep 4) nil)))
+  (is (equal (primep 0) nil))
+  (is (equal (primep 2) t))
+  (is (equal (primep 3) t))
+  (is (equal (primep 4) nil)))
 
 (test get-10-first-primes-number
   "new method to get the 10 first primes number"
-  (is (equal '(2 3 5 7 11 13 17 19 23 29) (duras::first-primes))))
+  (is (equal '(2 3 5 7 11 13 17 19 23 29) (first-primes))))
 
 (run! 'duras-suite)

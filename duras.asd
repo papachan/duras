@@ -7,10 +7,10 @@
   :components ((:module "src"
                         :serial t
                         :components
-                        ((:file "duras")
+                        ((:file "math")
+                         (:file "duras")
                          (:file "binary")
-                         (:file "algorithm")
-                         (:file "math"))))
+                         (:file "algorithm"))))
   :description "Scaffold for beginners in Common Lisp"
   :long-description
   #.(uiop:read-file-string

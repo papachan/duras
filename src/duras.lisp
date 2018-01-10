@@ -5,6 +5,8 @@
 
 (defpackage :duras
   (:use :cl)
+  (:import-from #:math
+                :primep)
   (:export :range
            :interleave
            :flatten
@@ -20,10 +22,6 @@
 (defun range (min max)
   (loop for n from min below (+ 1 max)
        collect n))
-
-;;
-
-(defparameter *mylist* '(:1 :2 :3 :4 :5 :6))
 
 (defun interleave (lst1 lst2)
   "interleave example"
@@ -59,7 +57,7 @@
 
 (defun first-primes (&key (end 10))
   (loop for n upfrom 2
-     when (math::primep n)
+     when (primep n)
      sum 1 into count
      and collect n
      until (>= count end)))
