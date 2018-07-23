@@ -7,5 +7,9 @@
   :components ((:module "t"
                 :serial t
                 :components
-                ((:file "duras-test"))))
+                ((:file "package")
+                 (:file "tests"))))
+  :perform (test-op (o s)
+                    (uiop:symbol-call :fiveam '#:run!
+                                      (uiop:find-symbol* '#:all-tests duras-test)))
   :description "")

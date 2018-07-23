@@ -36,3 +36,14 @@
                          (append (car new) (list res)))
         (car new))))
 
+(defun binary-search (value array &optional (len) (min 0))
+  (let* ((middle (floor (+ min len) 2))
+         (index (1- middle)))
+    (cond ((< (aref array index) value)
+           (binary-search value array (length array) index))
+          ((> (aref array index) value)
+           (binary-search value array (1+ middle)))
+          ((= (aref array index) value)
+           index))))
+
+(format t "~%;;; algorithm")

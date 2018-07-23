@@ -1,17 +1,15 @@
-;;;; -*- Mode: Lisp; indent-tabs-mode: nil -*-
+;;; -*- Mode: Lisp; Syntax: Common-Lisp -*-
+;;;; tests.lisp
 (asdf:oos 'asdf:load-op :fiveam)
-
-(defpackage duras-test
-  (:use :cl
-        :fiveam
-        :duras
-        :binary
-        :math
-        :algorithm))
 
 (in-package :duras-test)
 
 ;;;;
+
+(def-suite duras-suite :description
+  "a serie of tests to validate each exercises")
+
+(in-suite duras-suite)
 
 (defparameter *mylist* '(:1 :2 :3 :4 :5 :6) "used for interleaves test")
 
@@ -43,110 +41,103 @@
                       "abracadabra$")
   "A list for sorting test output")
 
-(def-suite duras-suite :description "first tests")
-
-(in-suite duras-suite)
-
-;; ++++++++++++++++++++++++++++++++++++++++++
-(test range-test
+(test test1_range-test
   "Test the RANGE function"
   (is (equal '(1 2) (range 1 2)))
   (is (equal '(2 3 4 5 6) (range 2 6)))
   (is (equal '(-2 -1 0 1 2 3) (range -2 3))))
 
-;; ++++++++++++++++++++++++++++++++++++++++++
-;; average test
-(test average-test
+(test test2_average-test
   "Test an Average function"
-  (is (equal 3 (average '(0 6))))
-  (is (equal 5/2 (average '(0 1 2 3 4 5)))))
+  (is (equal 3 (math::average '(0 6))))
+  (is (equal 5/2 (math::average '(0 1 2 3 4 5)))))
 
-;; ++++++++++++++++++++++++++++++++++++++++++
-(test flatten-test
+(test test3_flatten-test
   "Test a flatten list"
   (is (equal '(1 2 3 4) (flatten '(1 (2) (3) 4))))
   (is (equal '(1 2 3 4 5 6) (flatten '(1 2 (3 4 5 6))))))
 
-;; ++++++++++++++++++++++++++++++++++++++++++
-(test find-min-max
+(test test4_find-min-max
   "Test which find the min and the max of a list"
   (is (equal '(0 4) (find-min-max '(1 0 4))))
   (is (equal '(0 10) (find-min-max '(1 0 10 4)))))
 
-;; ++++++++++++++++++++++++++++++++++++++++++
-(test smallest-two
+(test test5_smallest-two
   "A test finding the smallest two values at a list"
   (is (equal '(1 2)  (smallest-two '(6 5 4 3 2 1 3 4 5 6 7))))
   (is (equal '(1 1)  (smallest-two '(1 1 1 1 1))))
   (is (equal '(0 1)  (smallest-two '(1 1 0 1 1))))
   (is (equal '(0 1)  (smallest-two '(0 1 1 1 1)))))
 
-;; ++++++++++++++++++++++++++++++++++++++++++
-(test calculate-list-sum-exp
+(test test6_calculate-list-sum-exp
   "A test to calculate the sum of digits of 2**n and sum"
   (is (equal 4 (calculate-list-exp 2)))
   (is (equal 26 (calculate-list-exp 15)))
   (is (equal 256 (calculate-list-exp 200))))
 
-;; ++++++++++++++++++++++++++++++++++++++++++
-(test interleaves-test
+(test test7_interleaves-test
   "Test an interleave function with two lists"
   (is (equal '(1 :1 2 :2 3 :3 4 :4 5 :5 6 :6)
              (interleave (range 1 6) *mylist*))))
 
-;; ++++++++++++++++++++++++++++++++++++++++++
-
-(test binary-test
+(test test8_binary-test
   "Test to transform a integer into a binary list"
-  (is (equal '(1) (binary-list 1)))
-  (is (equal '(1 1) (binary-list 3)))
-  (is (equal '(1 1 1) (binary-list 7)))
-  (is (equal '(1 1 1 1) (binary-list 15)))
-  (is (equal '(1 0 1 0 1 0) (binary-list 42)))
-  (is (equal '(1 1 1 1 1 1 1) (binary-list 127))))
+  (is (equal '(1) (binary::binary-list 1)))
+  (is (equal '(1 1) (binary::binary-list 3)))
+  (is (equal '(1 1 1) (binary::binary-list 7)))
+  (is (equal '(1 1 1 1) (binary::binary-list 15)))
+  (is (equal '(1 0 1 0 1 0) (binary::binary-list 42)))
+  (is (equal '(1 1 1 1 1 1 1) (binary::binary-list 127))))
 
-(test round_100-test
+(test test9_round_100-test
   "Test to round 100 an integer"
-  (is (equal 15000 (mround 14967 100))))
+  (is (equal 15000 (math::mround 14967 100))))
 
-(test remove_duplicates-test
+(test test10_remove_duplicates-test
   "Test remove duplicates"
   (is (equal '(1 2 3 4 5 6) (remove-duplicates *lst* :test #'equal))))
 
-(test findLongestSubString-test
+(test test11_findLongestSubString-test
   "Test to search the longest substring from a list"
-  (is (equal "abracadabra$" (findLongestSubstring *list*)))
-  (is (equal "1" (findLongestSubstring '("1" "2" "3")))))
+  (is (equal "abracadabra$" (algorithm::findLongestSubstring *list*)))
+  (is (equal "1" (algorithm::findLongestSubstring '("1" "2" "3")))))
 
-(test findSmallestSubString-test
+(test test12_findSmallestSubString-test
   "Test to search the smallest substring from a list"
-  (is (equal "a$" (findSmallestSubString *list*))))
+  (is (equal "a$" (algorithm::findSmallestSubString *list*))))
 
-(test reordering_list-test
+(test test13_reordering_list-test
   "Test reordering a list"
-  (is (equal *result* (reordering-list *list*))))
+  (is (equal *result* (algorithm::reordering-list *list*))))
 
-;; ++++++++++++++++++++++++++++++++++++++++++
-
-(defparameter *listA* '(2 4 8 16))
-(defparameter *listB* '(3 5 7 11 13 17 19))
-
-(test sort_double_list-test
+(test test14_sort_double_list-test
   "Test sorting two lists and merging into a single one"
-  (is (equal '(2 3 4 5 7 8 11 13 16 17 19)
-             (merge 'list *listA* *listB* '<))))
+  (let ((*listA* '(2 4 8 16))
+        (*listB* '(3 5 7 11 13 17 19)))
+    (is (equal '(2 3 4 5 7 8 11 13 16 17 19)
+               (merge 'list *listA* *listB* '<)))))
 
-;; ++++++++++++++++++++++++++++++++++++++++++
-
-(test prime_number
+(test test15_prime_number
   "detect when numer is prime or not"
-  (is (equal (primep 0) nil))
-  (is (equal (primep 2) t))
-  (is (equal (primep 3) t))
-  (is (equal (primep 4) nil)))
+  (is (equal (math::primep 0) nil))
+  (is (equal (math::primep 2) t))
+  (is (equal (math::primep 3) t))
+  (is (equal (math::primep 4) nil)))
 
-(test get-10-first-primes-number
+(test test16_get-10-first-primes-number
   "new method to get the 10 first primes number"
   (is (equal '(2 3 5 7 11 13 17 19 23 29) (first-primes))))
 
+(test test17_binary-search
+  "a binary search test"
+  (let ((arr #(1 3 4 5 6 7)))
+    (is (equal 0 (algorithm::binary-search 1 arr (length arr))))
+    (is (equal 1 (algorithm::binary-search 3 arr (length arr))))
+    (is (equal 3 (algorithm::binary-search 5 arr (length arr))))
+    ))
+
+
+
 (run! 'duras-suite)
+
+(print "test ends")
