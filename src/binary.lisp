@@ -16,6 +16,8 @@
         (nconc (binary-list q) (list r)))))
 
 (defun binary-search (value array &optional (max) (min 0))
+  (unless max
+    (setq max (length array)))
   (let* ((index (floor (+ min max) 2)))
     (cond ((< (aref array index) value)
            (binary-search value array (length array) index))

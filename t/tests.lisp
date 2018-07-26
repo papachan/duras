@@ -131,9 +131,9 @@
 (test test17_binary-search
   "a binary search test"
   (let ((arr #(1 3 4 5 6 7)))
-    (is (equal 0 (binary::binary-search 1 arr (length arr))))
-    (is (equal 1 (binary::binary-search 3 arr (length arr))))
-    (is (equal 5 (binary::binary-search 7 arr (length arr))))))
+    (is (equal 0 (binary::binary-search 1 arr)))
+    (is (equal 1 (binary::binary-search 3 arr)))
+    (is (equal 5 (binary::binary-search 7 arr)))))
 
 (run! 'duras-suite)
 
