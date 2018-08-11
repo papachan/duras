@@ -36,4 +36,23 @@
                          (append (car new) (list res)))
         (car new))))
 
+(defun clean-list (list)
+  (apply #'append
+         (mapcar (lambda (x)
+                   (if (numberp x)
+                       (list x)))
+                 list)))
+
+(defun min-list (lst)
+  (cond ((endp lst) nil)
+        ((endp (cdr lst)) (car lst))
+        (t (let ((head (car lst))
+                 (min (min-list (cdr lst))))
+             (if (< head min)
+                 head min)))))
+
+
+(defun unique (lst &key (test #'equal))
+  (remove-duplicates lst :test test))
+
 (format t "~%;;; algorithm")
