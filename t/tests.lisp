@@ -93,10 +93,6 @@
   "Test to round 100 an integer"
   (is (equal 15000 (math::mround 14967 100))))
 
-(test test10_remove_duplicates-test
-  "Test remove duplicates"
-  (is (equal '(1 2 3 4 5 6) (remove-duplicates *lst* :test #'equal))))
-
 (test test11_findLongestSubString-test
   "Test to search the longest substring from a list"
   (is (equal "abracadabra$" (algorithm::findLongestSubstring *list*)))
@@ -142,13 +138,17 @@
 
 (test test19_min_list
   "find the minimum value of a given list"
-  (let ((a '(1 8 14 32 4)))
-    (is (equal 1 (algorithm::min-list a)))))
+  (let ((a '(1 8 14 32 4))
+        (b '(32 6 4 77 50 21 38 2)))
+    (is (equal 1 (algorithm::min-list a)))
+    (is (equal 2 (algorithm::min-list b)))))
 
 (test test20_remove_duplicates_in_list
   "remove duplicates elements of a given list"
   (let ((a '(a a a a b c c a a d e e e e)))
-    (is (equal '(b c a d e) (algorithm::unique a)))))
+    (is (equal '(b c a d e) (algorithm::unique a)))
+    (is (equal '(1 2 3 4 5 6) (algorithm::unique *lst*)))))
+
 
 (run! 'duras-suite)
 
