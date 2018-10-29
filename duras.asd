@@ -2,16 +2,17 @@
 
 (asdf:defsystem #:duras
   :author "papachan <papachan@gmail.com>"
-  :license "MIT"
+  :license "BSD"
   :depends-on (:fiveam)
   :components ((:module "src"
                         :serial t
                         :components
-                        ((:file "math")
+                        ((:file "package")
+                         (:file "math")
                          (:file "duras")
                          (:file "binary")
                          (:file "algorithm"))))
-  :description "Scaffold for beginners in Common Lisp"
+  :description "A project with some algorithms solving exercices"
   :long-description
   #.(uiop:read-file-string
      (uiop:subpathname *load-pathname* "README.md")))

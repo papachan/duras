@@ -1,7 +1,6 @@
 (defsystem duras-test
   :author "@papachan <papachan@gmail.com>"
-  :version "0.1"
-  :license "MIT"
+  :license "BSD"
   :depends-on (:duras
                :fiveam)
   :components ((:module "t"
